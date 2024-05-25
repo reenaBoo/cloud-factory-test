@@ -1,30 +1,28 @@
-# React + TypeScript + Vite
+### Тестовое задание в компанию "Cloud Factory"
+#### На позицию Frontend-разработчика
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Сервис по просмотру котировок в реальном времени с обращением к API Poloniex.
 
-Currently, two official plugins are available:
+### Инструкция по запуску проекта:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Новое API Poloniex не позволяет получать данные без отключения CORS. 
+Необходимо запустить Proxy-server в папке backend.
 
-## Expanding the ESLint configuration
+Зависимости:
+```yarn install```
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+Запуск проекта:
 
-- Configure the top-level `parserOptions` property like this:
+```yarn dev```
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
+Сборка проекта:
+```yarn run build```
+
+### Технологии
+```sh
+React
+TypeScript
+MobX
+Styled-components
+Express
 ```
-
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
