@@ -34,7 +34,7 @@ const QuotesPage = observer(() => {
     if (coinData) {
       return;
     }
-    const fetchMarketData = activeTab === QuoteName.QUOTE_B ? fetchMarketA : fetchMarketB;
+    const fetchMarketData = activeTab === QuoteName.QUOTE_A ? fetchMarketA : fetchMarketB;
     fetchMarketData();
     const queryInterval = setInterval(fetchMarketData, 5000);
 

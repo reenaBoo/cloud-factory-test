@@ -1,4 +1,4 @@
-import { makeAutoObservable, action } from 'mobx';
+import { makeAutoObservable, action, runInAction } from 'mobx';
 import type { QuoteType } from '../components/types/QuoteType.ts';
 import { QuoteName } from '../enums/QuoteName.ts';
 
@@ -37,7 +37,9 @@ class MarketStore {
   };
 
   fetchInitData = async () => {
-    this.setLoader(true);
+    runInAction(() => {
+      this.setLoader(true);
+    });
     try {
       const response = await fetch(API_URL);
       if (!response.ok) {
@@ -46,10 +48,14 @@ class MarketStore {
       return await response.json();
     } catch (error) {
       console.error('Ошибка запроса:', error);
-      this.setLoader(false);
+      runInAction(() => {
+        this.setLoader(false);
+      });
       throw error;
     } finally {
-      this.setLoader(false);
+      runInAction(() => {
+        this.setLoader(false);
+      });
     }
   };
 
@@ -64,10 +70,14 @@ class MarketStore {
       const half = Math.ceil(initData.length / 2);
       const firstHalf = initData.slice(0, half);
 
-      this.setData(firstHalf);
-      this.setIsError(false);
+      runInAction(() => {
+        this.setData(firstHalf);
+        this.setIsError(false);
+      });
     } catch (error) {
-      this.setIsError(true);
+      runInAction(() => {
+        this.setIsError(true);
+      });
       console.error('Запрос завершился ошибкой:', error);
     }
   };
@@ -83,10 +93,14 @@ class MarketStore {
       const half = Math.ceil(initData.length / 2);
       const secondHalf = initData.slice(half);
 
-      this.setData(secondHalf);
-      this.setIsError(false);
+      runInAction(() => {
+        this.setData(secondHalf);
+        this.setIsError(false);
+      });
     } catch (error) {
-      this.setIsError(true);
+      runInAction(() => {
+        this.setIsError(true);
+      });
       console.error('Запрос завершился ошибкой:', error);
     }
   };
