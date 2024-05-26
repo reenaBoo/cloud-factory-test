@@ -9,12 +9,13 @@ export const TableSection = styled.table`
   border-collapse: collapse;
   border-radius: 32px;
   background-color: ${(props) => props.theme.white};
+  overflow: auto;
 `;
 
 export const StyledTh = styled.th`
   padding: 10px 0;
-  font-size: 18px;
-  color: ${(props) => props.theme.primaryDim};
+  font-size: var(--default-fs);
+  color: ${(props) => props.theme.blue4};
   width: 292px;
 `;
 
@@ -26,22 +27,19 @@ export const StyledTd = styled.td`
   padding: 10px 0;
   text-align: center;
   width: 292px;
-  color: ${(props) => props.theme.background};
+  color: ${(props) => props.theme.blue4};
 `;
 
 export const StyledTr = styled.tr`
   display: flex;
   justify-content: space-between;
   &:hover {
-    background-color: ${(props) => props.theme.primaryVariant};
+    background-color: ${(props) => props.theme.grey};
     cursor: pointer;
   }
 `;
 
 export const StyledThead = styled.thead`
-  font-size: 20px;
-  color: ${(props) => props.theme.primaryDim};
-  font-weight: 700;
   box-shadow: rgb(31 31 31 / 15%) 0 4px 20px -2px;
 `;
 

@@ -5,7 +5,8 @@ export const QuotesContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin: 48px 0;
+  padding: 55px 0;
+  position: relative;
 `;
 
 

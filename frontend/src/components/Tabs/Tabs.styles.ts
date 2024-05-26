@@ -6,19 +6,17 @@ export const ButtonGroup = styled.div`
   margin-bottom: 30px;
 `;
 
-export const Tab = styled.button<{ active: boolean }>`
+export const Tab = styled.button<{ $isActive: boolean }>`
   font-size: 20px;
-  padding: 10px 60px;
-  min-width: 200px;
+  padding: 10px 50px;
   cursor: pointer;
-  background: ${(props) => props.theme.backgroundVariant};
+  background: ${(props) => props.theme.blue4};
   color: ${(props) => props.theme.white};
   border: 0;
   outline: 0;
-  opacity: 0.6;
-  border-radius: 32px;
-  &:first-of-type {
-    margin-right: 2rem;
+  opacity: ${({$isActive}) => $isActive ? 1 : 0.6};
+  border-radius: 10px 0 0 10px;
+  &:last-of-type {
+      border-radius: 0 10px 10px 0;
   }
-  ${({ active, theme }) => active && `opacity: 1; outline: 2px ${theme.orange} solid`}
 `;

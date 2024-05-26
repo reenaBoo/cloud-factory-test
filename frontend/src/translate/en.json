@@ -1,0 +1,18 @@
+{
+  "ABOUT_HELLO": "Welcome to в «CryptoVoyage»!",
+  "ABOUT_DESCRIPTION": "With our app, every trading operation turns into an exciting journey through the world of cryptocurrencies. Get fresh quotes – our service guarantees that even in times of loss, your crypto portfolio will lift your spirits like a funny cat video!",
+  "ABOUT_ALT": "Investing meme",
+  "HEADER_FIRST_TAB": "About",
+  "HEADER_SECOND_TAB": "Quotes",
+  "QUOTE_A": "Quote A",
+  "QUOTE_B": "Quote B",
+  "ERROR": "Error",
+  "QUERY_ERROR_TEXT": "An error occurred while loading data",
+  "CLOSE": "Close",
+  "TICKER_INFO": "Ticker info",
+  "TICKER": "Ticker",
+  "LAST_COURSE": "Last course",
+  "BEST_BID": "Best Bid Price",
+  "BEST_ASK": "Best Ask Price",
+  "BEST_ASK_SIZE": "Best Bid Size"
+}

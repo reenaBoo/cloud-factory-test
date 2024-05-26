@@ -1,14 +1,17 @@
 import { useEffect } from 'react';
 import { QuotesContainer } from './QuotesPage.styles';
 import marketStore from '../../store/store.ts';
-import MessageDialog from '../Dialogs/MessageDialog/MessageDialog.tsx';
-import ErrorDialog from '../Dialogs/ErrorDialog/ErrorDialog.tsx';
+import QuoteInfoDialog from '../Dialogs/QuoteInfoDialog/QuoteInfoDialog.tsx';
 import Table from '../Table/Table.tsx';
 import { QuoteName } from '../../enums/QuoteName.ts';
 import Tabs from '../Tabs/Tabs.tsx';
 import { observer } from 'mobx-react';
+import Snackbar from '../Snackbar/Snackbar.tsx';
+import { useTranslation } from 'react-i18next';
 
 const QuotesPage = observer(() => {
+  const { t } = useTranslation();
+
   const {
     fetchMarketA,
     fetchMarketB,
@@ -18,20 +21,27 @@ const QuotesPage = observer(() => {
     isError,
     setIsError,
     clearData,
+    resetActiveTab,
   } = marketStore;
+
+  const errorMessage = `${t('ERROR')}: ${t('QUERY_ERROR_TEXT')}`;
+
+  useEffect(() => {
+    resetActiveTab();
+  }, []);
 
   useEffect(() => {
     if (coinData) {
       return;
     }
-    const fetchMarketData = activeTab === QuoteName.QUOTE_A ? fetchMarketA : fetchMarketB;
+    const fetchMarketData = activeTab === QuoteName.QUOTE_B ? fetchMarketA : fetchMarketB;
     fetchMarketData();
     const queryInterval = setInterval(fetchMarketData, 5000);
 
     return () => {
       clearInterval(queryInterval);
     };
-  }, [fetchMarketA, fetchMarketB, activeTab, coinData, clearData]);
+  }, [fetchMarketA, fetchMarketB, activeTab, coinData]);
 
   useEffect(() => {
     return () => {
@@ -40,14 +50,12 @@ const QuotesPage = observer(() => {
   }, [clearData, activeTab]);
 
   return (
-    <>
-      {isError && <ErrorDialog onClose={() => setIsError(!isError)} />}
-      <QuotesContainer>
-        <Tabs />
-        <Table />
-        {coinData && <MessageDialog row={coinData} onClose={() => getActualCoinData(null)} />}
-      </QuotesContainer>
-    </>
+    <QuotesContainer>
+      {isError && <Snackbar isOpen={isError} message={errorMessage} onClose={() => setIsError(false)} />}
+      <Tabs />
+      <Table />
+      {coinData && <QuoteInfoDialog row={coinData} onClose={() => getActualCoinData(null)} />}
+    </QuotesContainer>
   );
 });
 

@@ -1,10 +1,11 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import logo from '../../assets/images/logo.svg';
+import logo from '../../assets/images/bitcoin.svg';
 
-export const HeaderContainer = styled.div`
+export const HeaderContainer = styled.header`
   width: 100%;
-  border-bottom: ${(props) => `2px solid ${props.theme.white}`};
+  position: relative;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
 `;
 
 export const HeaderWrapper = styled.div`
@@ -13,7 +14,7 @@ export const HeaderWrapper = styled.div`
   justify-content: center;
   margin: auto;
   align-items: center;
-  background: var(--color-bg-second);
+  background: ${(props) => props.theme.blue};
 `;
 
 export const Logo = styled.div`
@@ -21,29 +22,39 @@ export const Logo = styled.div`
   background-repeat: no-repeat;
   background-size: 50px 50px;
   background-position: center;
-  padding: 10px 50px;
+  padding: 10px 60px;
   width: 200px;
   height: 50px;
-  @media (max-width: 968px) {
-    width: 70px;
-    background-size: 30px 30px;
-    padding: 5px 20px;
-  }
 `;
 
 export const StyledLink = styled(Link)<{ $activeTab: boolean }>`
-  padding: -3px 10px;
+  padding: 2px 0;
   text-decoration: none;
   font-size: var(--large-fs);
-  color: ${(props) => (props.$activeTab ? props.theme.orange : props.theme.white)};
-  background: ${(props) => props.theme.backgroundVariant};
-  border-radius: 16px;
+  color: ${(props) => (props.$activeTab ? props.theme.yellow : props.theme.white)};
   align-items: start;
   font-weight: 700;
-  outline: ${(props) => (props.$activeTab ? `2px ${props.theme.orange} solid` : undefined)};
-  min-width: 240px;
   text-align: center;
-  transition: 0.3s;
+  position: relative;
+
+  &:before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    bottom: 0;
+    margin: -5px 0;
+    background-color: ${(props) => props.theme.yellow};
+    visibility: hidden;
+    transform: scaleX(0);
+    transition: all 0.4s ease-in-out 0s;
+  }
+
+  &:hover:before {
+    visibility: visible;
+    transform: scaleX(1);
+  }
+
   @media (max-width: 968px) {
     font-size: var(--small-fs);
     min-width: 160px;
@@ -51,5 +62,26 @@ export const StyledLink = styled(Link)<{ $activeTab: boolean }>`
   @media (max-width: 400px) {
     font-size: var(--small-fs);
     min-width: 100px;
+  }
+`;
+
+export const LanguageContainer = styled.div`
+  position: absolute;
+  top: 20px;
+  right: 50px;
+  display: flex;
+  &:hover {
+    cursor: pointer;
+  }
+`;
+
+export const LanguageIcon = styled.img`
+  height: 24px;
+  width: 24px;
+  transition: .3s;
+
+  @media screen and (max-width: 440px) {
+    height: 16px;
+    width: 20px;
   }
 `;

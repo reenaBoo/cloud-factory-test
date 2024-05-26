@@ -17,7 +17,7 @@ body {
 
 :root {
   --color-bg: #f5f7fa;
-  --color-bg-second: #17181e;
+  /*--color-bg-second: #17181e;*/
   --color-white: #fff;
   --large-fs: 20px;
   --default-fs: 18px;

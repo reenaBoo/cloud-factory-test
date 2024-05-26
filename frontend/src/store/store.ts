@@ -2,6 +2,13 @@ import { makeAutoObservable, action } from 'mobx';
 import type { QuoteType } from '../components/types/QuoteType.ts';
 import { QuoteName } from '../enums/QuoteName.ts';
 
+/**
+ * Для подключения через расширение "CORS Unblock" необходимо раскомментировать и заменить константу
+ * API_URL на POLONIEX_URL в методе fetchInitData
+ */
+// const POLONIEX_URL = 'https://futures-api.poloniex.com/api/v2/tickers';
+const API_URL = 'http://localhost:3001/api';
+
 class MarketStore {
   data: QuoteType[] = [];
   isLoading: boolean = false;
@@ -32,7 +39,7 @@ class MarketStore {
   fetchInitData = async () => {
     this.setLoader(true);
     try {
-      const response = await fetch('http://localhost:3001/api');
+      const response = await fetch(API_URL);
       if (!response.ok) {
         throw new Error(`Ошибка HTTP: ${response.status}`);
       }
@@ -46,6 +53,9 @@ class MarketStore {
     }
   };
 
+  /**
+   * Получение данных для Котировки А
+   */
   fetchMarketA = async () => {
     try {
       const data = await this.fetchInitData();
@@ -62,6 +72,9 @@ class MarketStore {
     }
   };
 
+  /**
+   * Получение данных для Котировки Б
+   */
   fetchMarketB = async () => {
     try {
       const data = await this.fetchInitData();
@@ -88,6 +101,10 @@ class MarketStore {
 
   clearData = () => {
     this.data = [];
+  };
+
+  resetActiveTab = () => {
+    this.activeTab = QuoteName.QUOTE_A;
   };
 
   setData = (data: QuoteType[]) => {

@@ -1,6 +1,6 @@
-import { ReactNode, MouseEvent } from 'react';
-import { DialogCloseBtn, DialogTitle, DialogStyled, Overlay } from './Dialog.styles.ts';
-import { TEXT } from '../../../utils/Text.ts';
+import { MouseEvent, ReactNode } from 'react';
+import { DialogCloseBtn, DialogStyled, DialogTitle, Overlay } from './Dialog.styles.ts';
+import { useTranslation } from 'react-i18next';
 
 type DialogProps = {
   onClose: () => void;
@@ -9,6 +9,8 @@ type DialogProps = {
 };
 
 const Dialog = ({ onClose, title, children }: DialogProps) => {
+  const { t } = useTranslation();
+
   const handleOverlayClick = (e: MouseEvent<HTMLDivElement>) => {
     if (e.target === e.currentTarget) {
       onClose();
@@ -17,10 +19,10 @@ const Dialog = ({ onClose, title, children }: DialogProps) => {
 
   return (
     <Overlay onClick={handleOverlayClick}>
-      <DialogStyled onClick={(e) => e.stopPropagation()}>
+      <DialogStyled>
         <DialogTitle>{title}</DialogTitle>
         {children}
-        <DialogCloseBtn onClick={onClose}>{TEXT.CLOSE}</DialogCloseBtn>
+        <DialogCloseBtn onClick={onClose}>{t('CLOSE')}</DialogCloseBtn>
       </DialogStyled>
     </Overlay>
   );

@@ -13,38 +13,34 @@ export const Overlay = styled.div`
 `;
 
 export const DialogStyled = styled.div`
-  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   text-align: center;
   background-color: ${(props) => props.theme.white};
-  border: ${(props) => `1px solid ${props.theme.black}`};
-  padding: 2rem;
+  padding: 32px;
   border-radius: 12px;
-  width: 30rem;
-  top: auto;
+  width: 480px;
   margin: 0;
 `;
 
 export const DialogTitle = styled.p`
     font-size: var(--large-fs);
     font-weight: 700;
-    color: ${(props) => props.theme.background};
-    margin: 0 auto 1rem;
-    max-width: 60%;
+    color: ${(props) => props.theme.blue2};
+    margin: 0 auto 16px;
     @media (max-width: 968px) {
         font-size: var(--default-fs);
     }
 `;
 
 export const DialogCloseBtn = styled.div`
-    padding: 0.5rem 1rem;
-    margin-top: 1rem;
+    padding: 8px 16px;
+    margin-top: 16px;
     color: ${(props) => props.theme.white};
     background-color: ${(props) => props.theme.danger};
-    border-radius: 0.5rem;
+    border-radius: 8px;
     user-select: none;
     transition: 0.3s;
 

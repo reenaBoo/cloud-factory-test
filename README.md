@@ -5,8 +5,9 @@
 
 ### Инструкция по запуску проекта:
 
-Новое API Poloniex не позволяет получать данные без отключения CORS. 
-Необходимо запустить Proxy-server в папке backend.
+Для подключения к API Poloniex необходимо запустить Proxy-server из папки backend либо раскомментировать
+в store.ts и заменить константу API_URL на POLONIEX_URL в методе fetchInitData для подключения через расширение 
+"CORS Unblock".
 
 Зависимости:
 ```yarn install```
@@ -19,7 +20,7 @@
 ```yarn run build```
 
 ### Технологии
-```sh
+```
 React
 TypeScript
 MobX
